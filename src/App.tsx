@@ -1,30 +1,20 @@
-// const App = () => {
-//   return (
-//     <div>
-//       <h1> Meu Primeiro Componente</h1>
-//     </div>
-//   )
-// }
+// import { UserName } from './UserName'
+// import UserName from './UserName'
+import {UserName as Usname} from './UserName'
+import {UserEmail} from './UserName'
+import UserAge  from './UserName'
 
+  
+  const App = () => {
+  return (
+    <div>
+      <h1>Meu primeiro componente de usuário.</h1>
 
-// function App() {
-//   return (
-//     <div>
-//       <h1>Meu Primeiro Projeto</h1>
-//     </div>
-//   )
-// }
-
-import React from 'react';
-
-class App extends React.Component{
-  render(){
-    return (
-      <div>
-        <h1>Meu primeiro Componente </h1>
-      </div>
-    )
-  }
+      <Usname />
+      <UserEmail />
+      <UserAge />
+    </div>
+  )
 }
 
 export default App;
