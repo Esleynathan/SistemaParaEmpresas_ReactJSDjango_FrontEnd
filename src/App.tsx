@@ -1,18 +1,11 @@
-// import { UserName } from './UserName'
-// import UserName from './UserName'
-import {UserName as Usname} from './UserName'
-import {UserEmail} from './UserName'
-import UserAge  from './UserName'
+import { UserInfo } from "./componentes/UserInfo";
 
-  
-  const App = () => {
+const App = () => {
   return (
     <div>
-      <h1>Meu primeiro componente de usuário.</h1>
+      <h1>Dados do usuario: </h1>
 
-      <Usname />
-      <UserEmail />
-      <UserAge />
+      <UserInfo />
     </div>
   )
 }
