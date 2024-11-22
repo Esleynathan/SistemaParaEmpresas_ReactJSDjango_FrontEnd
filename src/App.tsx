@@ -29,7 +29,7 @@ const App = () => {
       <h1>Meu primeiro componente de usuário</h1>
 
       <UserInfo
-          avatar = "https://img.favpng.com/17/24/10/computer-icons-user-profile-male-avatar-png-favpng-jhVtWQQbMdbcNCahLZztCF5wk.jpg"
+          avatar = "https://clipart-library.com/2023/426-4262524_avatar-the-last-airbender-png-transparent-png.png"
           name = "Ésley"
           age = {30}
           email = "esley@hotmail.com"
@@ -37,7 +37,6 @@ const App = () => {
       />
 
       <UserInfo
-          avatar = "https://clipart-library.com/2023/426-4262524_avatar-the-last-airbender-png-transparent-png.png"
           name = "Nathan"
           age = {20}
           email = "nathan@hotmail.com"

@@ -8,28 +8,28 @@ type Props = {
     name: string;
     email: string;
     age: number;
-    avatar: string;
+    avatar?: string;
     roles: {id: number, title: string}[]
 }
 
-export const UserInfo = ( props: Props ) => {
+export const UserInfo = ({ name, email, age, roles, avatar = "https://img.favpng.com/17/24/10/computer-icons-user-profile-male-avatar-png-favpng-jhVtWQQbMdbcNCahLZztCF5wk.jpg"}: Props ) => {
     return (
         <>  
             <UserAvatar
                 // src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-                src = {props.avatar}
+                src = {avatar}
             />
             <UserName
-                name = {props.name}
+                name = {name}
             />
             <UserEmail 
-                email = {props.email}
+                email = {email}
             />
             <UserAge 
-                age = {props.age}
+                age = {age}
             />
             <UserRoles 
-                roles = {props.roles}
+                roles = {roles}
             />
         </>
     )
