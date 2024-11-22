@@ -1,5 +1,9 @@
-export const UserEmail = () => {
+type Props = {
+    email: string
+}
+
+export const UserEmail = ({email}: Props) => {
     return (
-        <h4>Meu User é esleynathan@hotmail.com</h4>
+        <h4>Meu User é {email}</h4>
     )
 }

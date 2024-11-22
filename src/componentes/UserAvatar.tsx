@@ -1,8 +1,13 @@
-export const UserAvatar = () => {
+type Props = {
+    src: string
+}
+
+export const UserAvatar = ({ src } : Props) => {
     return (
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" 
+        <img 
+        src={src} 
         alt="User Avatar" 
-        onClick={() => alert('Clicou!')} 
+        // onClick={() => alert('Clicou!')} 
         />
     )
 }
