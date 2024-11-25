@@ -1,16 +1,19 @@
-import { Button } from "./componentes/Button";
+import { FormEvent } from "react"
 
-function App() {
+const App = () => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
 
-  const handleClick = (label: string) => alert (label);
+    alert ('Formulário enviado com sucesso!')
+  }
 
   return (
-    <div>
-      < Button
-        onClick={handleClick}
-      />
-
-    </div >
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input />
+          <button>Enviar</button>
+        </form>
+      </div >
   )
 }
 
