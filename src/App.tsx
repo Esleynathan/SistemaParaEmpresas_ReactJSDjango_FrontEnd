@@ -1,18 +1,19 @@
-import { FormEvent } from "react"
+import { useState } from "react"
 
 const App = () => {
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const [count, setCount] = useState(0)
 
-    alert ('Formulário enviado com sucesso!')
+  const handleClick = () => {
+    setCount(count + 1)
   }
 
   return (
       <div>
-        <form onSubmit={handleSubmit}>
-          <input />
-          <button>Enviar</button>
-        </form>
+        <h1>Counter App</h1>
+        <h2>{count}</h2>
+        <button onClick={() => setCount(count - 1)}>Remover um.</button>
+        <button onClick={handleClick}>Adicionar um.</button>
+
       </div >
   )
 }
