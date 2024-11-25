@@ -8,14 +8,27 @@ const App = () => {
     setValue(e.target.value)
   }
 
+  // if (value != '') {
+  //   return (
+  //     <div>
+  //       Você já escreveu.
+  //     </div>
+  //   )
+  // }
+
   return (
       <div>
-        <input 
-          value={value}
-          onChange={handleChange}
-          />
-
-          <h2>{value}</h2>
+        {value == '' ?
+          <>
+            <input 
+              value={value}
+              onChange={handleChange}
+              />
+            <h2>{value}</h2>
+          </>
+          :
+          'Você já escreveu.'
+        }
       </div >
   )
 }
