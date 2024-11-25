@@ -1,7 +1,9 @@
-import { UserInfo } from "./componentes/UserInfo";
+// import { UserInfo } from "./componentes/UserInfo";
+import { Card } from "./componentes/Card";
+import { UserName } from "./componentes/UserName";
 
 const App = () => {
-  const isLogged = true;
+  // const isLogged = true;
 
   // if (isLogged) {
   //   return (
@@ -26,6 +28,18 @@ const App = () => {
 
   return (
     <div>
+      <Card> 
+        <>
+          <UserName 
+            name="Ésley" 
+          />
+
+          <h1>Texto</h1>
+        </>
+      </Card>
+    </div>
+
+      {/* 
       <h1>Meu primeiro componente de usuário</h1>
 
       <UserInfo
@@ -41,9 +55,8 @@ const App = () => {
           age = {20}
           email = "nathan@hotmail.com"
           roles = {[{id: 2, title: 'CTO'}]}
-      />
+      /> */}
 
-    </div>
   )
 
 
