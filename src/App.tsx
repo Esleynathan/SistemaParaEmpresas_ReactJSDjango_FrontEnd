@@ -1,15 +1,15 @@
+import { Button } from "./componentes/Button";
+
 function App() {
-  const handleClick = () => {
-    alert('Clicou aqui!')
-  }
+
+  const handleClick = (label: string) => alert (label);
 
   return (
     <div>
-      <button
-        onClick={() => handleClick()}
-      >
-        Clique aqui
-      </button>
+      < Button
+        onClick={handleClick}
+      />
+
     </div >
   )
 }
