@@ -1,12 +1,12 @@
 function App() {
-  // function clicou() {
-  //   alert('Clicou aqui!')
-  // }
+  const handleClick = () => {
+    alert('Clicou aqui!')
+  }
 
   return (
     <div>
       <button
-        onClick={() => alert('Clicou aqui!')}
+        onClick={() => handleClick()}
       >
         Clique aqui
       </button>
