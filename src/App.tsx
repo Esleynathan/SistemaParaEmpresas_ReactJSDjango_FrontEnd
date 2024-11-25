@@ -1,19 +1,21 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
+
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [value, setValue] = useState('')
 
-  const handleClick = () => {
-    setCount(count + 1)
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => { 
+    setValue(e.target.value)
   }
 
   return (
       <div>
-        <h1>Counter App</h1>
-        <h2>{count}</h2>
-        <button onClick={() => setCount(count - 1)}>Remover um.</button>
-        <button onClick={handleClick}>Adicionar um.</button>
+        <input 
+          value={value}
+          onChange={handleChange}
+          />
 
+          <h2>{value}</h2>
       </div >
   )
 }
