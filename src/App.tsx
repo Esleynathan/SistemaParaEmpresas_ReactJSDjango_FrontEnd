@@ -1,36 +1,24 @@
-import { ChangeEvent, useState } from "react"
-
+import { useState } from "react";
 
 const App = () => {
-  const [value, setValue] = useState('')
+  const [count, setCount] = useState(0)
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => { 
-    setValue(e.target.value)
+  const handleClick = () => {
+    setCount(count + 1)
+    setCount(count + 1)
+    setCount(count + 1)
+
   }
-
-  // if (value != '') {
-  //   return (
-  //     <div>
-  //       Você já escreveu.
-  //     </div>
-  //   )
-  // }
 
   return (
       <div>
-        {value == '' ?
-          <>
-            <input 
-              value={value}
-              onChange={handleChange}
-              />
-            <h2>{value}</h2>
-          </>
-          :
-          'Você já escreveu.'
-        }
+        <h2>{count}</h2>
+
+        <button onClick={handleClick}>
+          Adicionar +1
+        </button>
       </div >
   )
 }
 
-export default App
+export default App;
