@@ -1,22 +1,27 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [fullName, setFullName] = useState({ firstName: '', lastName: '' })
 
-  const handleClick = () => {
-    setCount(count + 1)
-    setCount(count + 1)
-    setCount(count + 1)
+  const handleChangeFirstName = (e: ChangeEvent<HTMLInputElement>) => {
+    setFullName({ ...fullName, firstName: e.target.value })
+  }
 
+  const handleChangeLastName = (e: ChangeEvent<HTMLInputElement>) => {
+    setFullName({ ...fullName, lastName: e.target.value })
   }
 
   return (
       <div>
-        <h2>{count}</h2>
+        <input
+          value={fullName.firstName}
+          onChange={handleChangeFirstName}
+        />
 
-        <button onClick={handleClick}>
-          Adicionar +1
-        </button>
+        <input
+          value={fullName.lastName}
+          onChange={handleChangeLastName}
+        />
       </div >
   )
 }
