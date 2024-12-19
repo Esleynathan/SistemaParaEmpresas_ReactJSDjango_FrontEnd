@@ -7,20 +7,23 @@ const App = () => {
   const handleadd = () => {
     if (inputValue == '') return;
 
-    // Método 1:
-    // setTasks ([...tasks, inputValue])
+      // Método 1:
+      // setTasks ([...tasks, inputValue])
 
-    // Método 2:
-    // setTasks(tasks.concat([inputValue]))
+      // Método 2:
+      // setTasks(tasks.concat([inputValue]))
 
-    // Método 3:
-    const newTasks = [...tasks]
-    newTasks.push(inputValue)
-    setTasks(newTasks)
+      // Método 3:
+      const newTasks = [...tasks]
+      newTasks.push(inputValue)
+      setTasks(newTasks)
 
-    setInputValue('')
+      setInputValue('')
   }
 
+  const handleDel = (key:number) => {
+    setTasks(tasks.filter((_value, index) => index != key))
+  }
 
   return (
       <div>
@@ -42,6 +45,9 @@ const App = () => {
             {tasks.map((value, key) => (
               <li key={key}>
                 {value}
+                -
+                <button onClick={() => handleDel(key)}>
+                  Deletar</button>
 
               </li>
               
