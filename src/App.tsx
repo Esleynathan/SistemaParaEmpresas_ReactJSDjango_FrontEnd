@@ -1,16 +1,20 @@
-import { Provider } from "react-redux"
-import { store } from "./redux/store"
-import { Button } from "./components/Button"
 
+const App = () => {
+  const handleGetPosts = async () => {
+    const posts = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
 
-function App() {
+    }).then( _response => {console.log('Tudo certo!')})
+
+  }
+
   return (
-    <Provider store={store}>
-      <div>
-        <Button />
-
-      </div>
-    </Provider>
+    <div>
+      <button onClick={handleGetPosts}>Fazer requisiçao.</button>
+    </div>
   )
 }
 
