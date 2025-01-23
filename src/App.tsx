@@ -1,56 +1,23 @@
-import { useState } from "react"
-
-type Post = {
-  userId: number,
-  id: number,
-  title: string,
-  body: string,
-}
-
 const App = () => {
-  const [postsData, setPostsData] = useState<Post[]>([])
-  const [loading, setLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-
   const handleGetPosts = async () => {
-    setLoading(true)
+    const request = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
+      method: 'DELETE',
+      // body: JSON.stringify({title: 'Meu novo EDITADO', body: 'Corpo do meu post'}),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
 
-    try {
-      const request = await fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
+    const result = await request.json()
 
-      const posts: Post[] = await request.json()      
-      setPostsData(posts)
-    } catch {
-      setErrorMessage('Houve um erro na requisição.')
-    }
-
-    setLoading(false)
-
+    console.log('O resultado foi: ', result)
   }
 
   return (
     <div>
       <button onClick={handleGetPosts}>Fazer requisiçao.</button>
-
-      {loading && <p>Carregando...</p>}
-
-      {errorMessage && <p>{errorMessage}</p>}
-
-      <ul>
-        {postsData.map(item => (
-          <li key={item.id}>
-            {item.title}
-          </li>
-        ))}
-
-      </ul>
     </div>
   )
-}
+  }
 
-export default App
+export default App;
