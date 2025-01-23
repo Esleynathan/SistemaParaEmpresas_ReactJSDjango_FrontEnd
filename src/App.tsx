@@ -1,16 +1,16 @@
+import axios from "axios"
+
 const App = () => {
-  const handleGetPosts = async () => {
-    const request = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
-      method: 'DELETE',
-      // body: JSON.stringify({title: 'Meu novo EDITADO', body: 'Corpo do meu post'}),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
+  // const handleGetPosts = async () => {
+  //   const posts = await axios.get('https://jsonplaceholder.typicode.com/posts')
+  //   console.log(posts.data)
+  // }
 
-    const result = await request.json()
-
-    console.log('O resultado foi: ', result)
+  const handleGetPosts = () => {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+        console.log(response.data)
+      })
   }
 
   return (
