@@ -1,23 +1,25 @@
-import axios from "axios"
+import { Routes, Route } from "react-router-dom"
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
 
 const App = () => {
-  const controller = new AbortController()
-
-  const handleOnClick = async () => {
-    await axios('https://jsonplaceholder.typicode.com/posts', {signal: controller.signal})
-  }
-
-  const handleOnClickStop = () => {
-    controller.abort()
-  }
-
   return (
     <div>
-      <button onClick={handleOnClick}>Fazer requisiçao.</button>
-      <br></br>
-      <button onClick={handleOnClickStop}>Fazer requisiçao.</button>
+      ...
+      <Routes>
+        <Route
+          index
+          element={ <Home /> }
+        />
+
+        <Route
+          path='/about'
+          element={ <About /> }
+        />
+
+      </Routes>
     </div>
   )
-  }
+}
 
 export default App;
