@@ -8,10 +8,7 @@ import { MainLayout } from "./components/MainLayout";
 const App = () => {
   return (
     <div>
-      ...
       <Routes>
-        <Route element={<MainLayout />}> 
-
           <Route
             index
             element={ <Home />}
@@ -23,7 +20,7 @@ const App = () => {
           />
 
 
-          <Route path='/products'>
+          <Route path='/products' element={<MainLayout />}>
             <Route            
               element={ <Products /> }
             />
@@ -33,8 +30,6 @@ const App = () => {
               element={ <Product /> }
             />
           </Route>
-
-        </Route>
       </Routes>
     </div>
   )
