@@ -13,7 +13,7 @@ export type UserEnterpriseDetail = {
 
 
 export type ApiGetUser = {
-    user: string;
+    user: User;
     enterprise: UserEnterpriseDetail;
 }
 
@@ -23,4 +23,3 @@ export type ApiSignIn = {
     refresh: string;
     access: string;
 }
-
