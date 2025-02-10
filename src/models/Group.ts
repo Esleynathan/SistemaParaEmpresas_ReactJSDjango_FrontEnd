@@ -16,4 +16,3 @@ export type ApiGetGroups = {
 export type ApiGetGroup = {
     group: GroupDetail;
 }
-

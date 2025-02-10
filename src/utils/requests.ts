@@ -44,7 +44,7 @@ const editGroup = async (id: number, {name, permissions}: {name?: string, permis
     return response;
 }
 
-const deletedGroup = async (id: number) => {
+const deleteGroup = async (id: number) => {
     const response = await useApi(`companies/grupos/${id}`, 'DELETE');
     return response;
 }
@@ -121,7 +121,7 @@ export const useRequest = () => ({
     getAnGroup,
     addGroup,
     editGroup,
-    deletedGroup,
+    deleteGroup,
 
     // Employees
     getEmployees,
