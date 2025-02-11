@@ -6,6 +6,7 @@ import SidebarLayout from 'src/layouts/SidebarLayout';
 import BaseLayout from 'src/layouts/BaseLayout';
 
 import SuspenseLoader from 'src/components/SuspenseLoader';
+import Sidebar from './layouts/SidebarLayout/Sidebar';
 
 const Loader = (Component) => (props) =>
   (
@@ -16,6 +17,9 @@ const Loader = (Component) => (props) =>
 
 //Auth
 const SignIn = Loader(lazy(() => import ('src/content/pages/Auth/Signin'))); 
+
+// Groups
+const Groups = Loader(lazy(() => import('src/content/pages/Groups/Groups')));
 
 // Pages
 
@@ -89,6 +93,17 @@ const routes: RouteObject[] = [
         path: '/signin',
         element: <SignIn />
       },      
+      // Groups
+      {
+        path: '',
+        element: <SidebarLayout />,
+        children: [
+            {
+              path: 'groups',
+              element: <Groups />,
+            }
+          ]
+      },
       {
         path: '/',
         element: <Overview />
