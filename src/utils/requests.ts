@@ -8,6 +8,7 @@ import { ApiGetTask, ApiGetTasks } from "src/models/Task";
 
 // Authentication
 const signIn = async ({email, password}: {email: string, password: string}) => {
+    console.log('3º Etapa -> utils/requets.ts -> Enviando requisição para /auth/signin com:', email, password);
     const response = await useApi<ApiSignIn>('auth/signin', 'POST', {email, password}, false);
     return response;
 }

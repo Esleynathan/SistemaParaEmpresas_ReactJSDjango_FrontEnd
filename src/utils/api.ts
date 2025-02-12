@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { ApiError } from "src/models/Api";
 import { handleGetAccessToken } from "./auth";
 
-const BASE_URL = 'https://localhost:8000/api/v1';
+const BASE_URL = 'http://127.0.0.1:8000/api/v1';
 
 export const useApi = async <TypeDataResponse> (
     endpoint: string,
@@ -22,7 +22,8 @@ export const useApi = async <TypeDataResponse> (
         headers['Autorization'] = `Bearer ${access_token}`;
     } 
 
-    try {
+    try {        
+        console.log('4º Etapa -> utils/requets.ts -');
         const request = await axios(`${BASE_URL}/${endpoint}`, {
             method,
             data: method != 'GET' && data,
@@ -38,7 +39,7 @@ export const useApi = async <TypeDataResponse> (
 
         return {
             data: null,
-            detail: error.response.data.details || error.message
+            detail: error.response.data.detail || error.message
         }
 
     }

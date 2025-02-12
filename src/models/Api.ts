@@ -1,4 +1,4 @@
 export type ApiError = {
-    details: string;
+    detail: string;
     code?: string;
 }

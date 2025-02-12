@@ -26,6 +26,7 @@ const SignIn = () => {
     const { handleSignIn } = useAuth()
 
     const handleSignInBtn = async () => {
+        console.log('1º Etapa -> Auth/Signin.tsx -> Handle SignIn BTN')
         if (emailInput == '' || passwordInput == '') {
             setSnackBarMessage('Preencha todos os campos.')
             return
@@ -36,6 +37,8 @@ const SignIn = () => {
             setSnackBarMessage('Email ou senha incorretos.')
             return
         }
+
+        
 
         // Redirect on success
         navigate('/')
