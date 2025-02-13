@@ -26,27 +26,27 @@ const getPermissions = async () => {
 }
 
 const getGroups = async () => {
-    const response = await useApi<ApiGetGroups>('companies/grupos');
+    const response = await useApi<ApiGetGroups>('companies/groups');
     return response;
 }
 
 const getAnGroup = async (id: number) => {
-    const response = await useApi<ApiGetGroup>(`companies/grupos/${id}`);
+    const response = await useApi<ApiGetGroup>(`companies/groups/${id}`);
     return response;
 }
 
 const addGroup = async ({name, permissions}: {name: string, permissions: number[]}) => {
-    const response = await useApi('companies/grupos', 'POST', {name, permissions});
+    const response = await useApi('companies/groups', 'POST', {name, permissions});
     return response;
 }
 
 const editGroup = async (id: number, {name, permissions}: {name?: string, permissions?: number[]}) => {
-    const response = await useApi(`companies/grupos/${id}`, 'PUT', {name, permissions});
+    const response = await useApi(`companies/groups/${id}`, 'PUT', {name, permissions});
     return response;
 }
 
 const deleteGroup = async (id: number) => {
-    const response = await useApi(`companies/grupos/${id}`, 'DELETE');
+    const response = await useApi(`companies/groups/${id}`, 'DELETE');
     return response;
 }
 
