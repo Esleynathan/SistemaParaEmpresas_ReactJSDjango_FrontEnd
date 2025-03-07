@@ -105,7 +105,7 @@ const routes: RouteObject[] = [
             },
             {
               path: 'groups-add',
-              element: <AddGroup />
+              element: <AddGroup />,
             },
           ]
       },

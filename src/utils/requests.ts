@@ -35,12 +35,12 @@ const getAnGroup = async (id: number) => {
     return response;
 }
 
-const addGroup = async ({name, permissions}: {name: string, permissions: number[]}) => {
+const addGroup = async ({name, permissions}: {name: string, permissions: string }) => {
     const response = await useApi('companies/groups', 'POST', {name, permissions});
     return response;
 }
 
-const editGroup = async (id: number, {name, permissions}: {name?: string, permissions?: number[]}) => {
+const editGroup = async (id: number, {name, permissions}: {name?: string, permissions?: string }) => {
     const response = await useApi(`companies/groups/${id}`, 'PUT', {name, permissions});
     return response;
 }
@@ -67,8 +67,8 @@ const addEmployee = async ({name, email, password }: {name: string, email: strin
     return response;
 }
 
-const editEmployee = async (id:number, {name, email, password, groups}: {name: string, email: string, password: string, groups: string}) => {
-    const response = await useApi(`companies/employees/${id}`, 'PUT', {name, email, password, groups});
+const editEmployee = async (id:number, {name, email, groups}: {name: string, email: string, groups: string}) => {
+    const response = await useApi(`companies/employees/${id}`, 'PUT', {name, email, groups});
     return response;
 }
 
@@ -111,7 +111,7 @@ const deleteTask = async (id: number) => {
 
 
 // Exporting all requests
-export const useRequest = () => ({
+export const useRequests = () => ({
     //Auth
     signIn,
     getUser,

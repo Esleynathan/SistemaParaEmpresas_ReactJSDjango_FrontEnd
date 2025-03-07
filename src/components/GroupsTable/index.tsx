@@ -16,7 +16,7 @@ import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { useNavigate } from "react-router"
 import { GroupDetail } from "src/models/Group"
 import { useAuth } from "src/utils/auth"
-import { useRequest } from "src/utils/requests"
+import { useRequests } from "src/utils/requests"
 
 
 type Props = {
@@ -27,7 +27,7 @@ type Props = {
 const GroupsTable = ( {groupsList, refreshList}: Props ) => {
     const { handlePermissionExists } = useAuth();
 
-    const { deleteGroup } = useRequest();
+    const { deleteGroup } = useRequests();
 
     const theme = useTheme();
     const navigate = useNavigate();
@@ -80,8 +80,9 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
                                         {handlePermissionExists('change_group') &&
                                             <Tooltip title="Editar cargo" arrow>
                                                 <IconButton
+                                                    onClick={() => handleEditGroup(group.id)}
                                                     sx={{
-                                                        '&:houver': {
+                                                        '&:hover': {
                                                             background: theme.colors.primary.lighter
                                                         },
                                                         color: theme.palette.primary.main
@@ -89,7 +90,7 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
                                                     color='inherit'
                                                     size='small'
                                                 >
-                                                    <EditTwoToneIcon onClick={() => handleEditGroup(group.id)} />
+                                                    <EditTwoToneIcon />
                                                 </IconButton>
                                             </Tooltip>
                                         }
@@ -97,8 +98,9 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
                                         {handlePermissionExists('delete_group') &&
                                             <Tooltip title="Excluir cargo" arrow>
                                                 <IconButton
+                                                    onClick={() => handleDeleteGroup(group.id)}
                                                     sx={{
-                                                        '&:houver': {
+                                                        '&:hover': {
                                                             background: theme.colors.primary.lighter
                                                         },
                                                         color: theme.palette.error.main
@@ -106,7 +108,7 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
                                                     color='inherit'
                                                     size='small'                                                
                                                 >
-                                                    <DeleteTwoToneIcon onClick={() => handleDeleteGroup(group.id)} />
+                                                    <DeleteTwoToneIcon />
                                                 </IconButton>
                                             </Tooltip>
                                         }

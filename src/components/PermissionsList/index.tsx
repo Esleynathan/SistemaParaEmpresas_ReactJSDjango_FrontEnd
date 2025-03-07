@@ -37,3 +37,5 @@ const PermissionsList = ({ permissionsData, selectedPermissions, setSelectedPerm
         </FormGroup>
     )
 };
+
+export default PermissionsList;

@@ -16,19 +16,20 @@ export const useApi = async <TypeDataResponse> (
     //Lógica de autenticação
     const access_token = handleGetAccessToken();
 
-    let headers = {};
+    const config = {
+        method,
+        headers: {
+            'Authorization': withAuth ? `Bearer ${access_token}` : '',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        url: `${BASE_URL}/${endpoint}`,
+        data: method !== 'GET' ? data : undefined,
+        params: method === 'GET' ? data : undefined
+    };
 
-    if (withAuth && access_token) {
-        headers['Autorization'] = `Bearer ${access_token}`;
-    } 
-
-    try {        
-        console.log('4º Etapa -> utils/requets.ts -');
-        const request = await axios(`${BASE_URL}/${endpoint}`, {
-            method,
-            data: method != 'GET' && data,
-            params: method == 'GET' && data,    
-        })
+    try {
+        const request = await axios(config);
 
         return {
             data: request.data,

@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import GroupsTable from "src/components/GroupsTable";
@@ -6,15 +5,17 @@ import PageTitle from "src/components/PageTitle";
 import PageTitleWrapper from "src/components/PageTitleWrapper";
 import { PermissionMiddleware } from "src/middlewares/PermissionMiddleware";
 import { GroupDetail } from "src/models/Group";
-import { useRequest } from "src/utils/requests";
+import { useRequests } from "src/utils/requests";
+import { Container } from "@mui/material";
 
 const Groups = () => {
-    const [requestLoading, setRequestLoading] = useState(false)
+    const [requestLoading, setRequestLoading] = useState(true)
     const [groupsData, setGroupsData] = useState<GroupDetail[]>([])
 
-    const { getGroups } = useRequest();
+    const { getGroups } = useRequests();
 
     const handleGetGroups = async () => {
+        setRequestLoading(true);
         const response = await getGroups();
 
         setGroupsData(response.data.groups);
@@ -40,11 +41,11 @@ const Groups = () => {
                 </PageTitleWrapper>
             </>
 
-            <Container 
-                maxWidth="lg"
+            <Container
+                maxWidth="xl"
                 sx={{
                     marginX: requestLoading ? '-10%' : 0,
-                    transition: 'all .5s'
+                    transition: 'all 0.5s'
                 }}
                 >
                 <GroupsTable
