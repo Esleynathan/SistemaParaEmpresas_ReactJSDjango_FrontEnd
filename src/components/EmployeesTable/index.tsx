@@ -1,43 +1,39 @@
 import { Container,
-        Card,
-        TableContainer,
-        Table,
-        TableHead,
-        TableCell,
-        TableBody,
-        TableRow,
-        Typography,
-        Tooltip,
-        IconButton,
-        useTheme,
+    Card,
+    TableContainer,
+    Table,
+    TableHead,
+    TableCell,
+    TableBody,
+    TableRow,
+    Typography,
+    Tooltip,
+    IconButton,
 } from "@mui/material"
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { useNavigate } from "react-router"
-import { GroupDetail } from "src/models/Group"
+import { Employee } from "src/models/Employee"
 import { useAuth } from "src/utils/auth"
 import { useRequests } from "src/utils/requests"
 
-
 type Props = {
-    groupsList: GroupDetail[]
-    refreshList: () => void
+    employeesList   : Employee[]
+refreshList: () => void
 }
 
-const GroupsTable = ( {groupsList, refreshList}: Props ) => {
+const EmployeesTable = ( {employeesList, refreshList}: Props ) => {
     const { handlePermissionExists } = useAuth();
+    const { deleteEmployee } = useRequests();
 
-    const { deleteGroup } = useRequests();
-
-    const theme = useTheme();
     const navigate = useNavigate();
 
-    const handleEditGroup  = ( id: number ) => {
-        navigate(`/groups/edit/${id}`)
+    const handleEditEmployee  = ( id: number ) => {
+        navigate(`/employees/edit/${id}`)
     }
 
-    const handleDeleteGroup = async ( id: number ) => {
-        await deleteGroup(id);
+    const handleDeleteEmployee = async ( id: number ) => {
+        await deleteEmployee(id);
         refreshList();
     }
 
@@ -51,19 +47,20 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell>Nome</TableCell>
+                                <TableCell>Email</TableCell>
                                 <TableCell align="right">Ações</TableCell>
                             </TableRow>
                         </TableHead>
 
                         <TableBody>
-                            {groupsList.map((group) => (
-                                <TableRow hover key={group.id}>
+                            {employeesList.map((employee) => (
+                                <TableRow hover key={employee.id}>
                                     <TableCell>
                                         <Typography
                                             fontWeight="bold"
                                             gutterBottom
                                         >
-                                            #{group.id}
+                                            #{employee.id}
                                         </Typography>
                                     </TableCell>
 
@@ -72,22 +69,25 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
                                             fontWeight="bold"
                                             gutterBottom
                                         >
-                                            #{group.name}
+                                            #{employee.name}
+                                        </Typography>
+                                    </TableCell>
+
+                                    <TableCell>
+                                        <Typography
+                                            fontWeight="bold"
+                                            gutterBottom
+                                        >
+                                            #{employee.email}
                                         </Typography>
                                     </TableCell>
 
                                     <TableCell align="right">
-                                        {handlePermissionExists('change_group') &&
-                                            <Tooltip title="Editar cargo" arrow>
+                                        {handlePermissionExists('change_employee') &&
+                                            <Tooltip title="Editar funcionário" arrow>
                                                 <IconButton
-                                                    onClick={() => handleEditGroup(group.id)}
-                                                    sx={{
-                                                        '&:hover': {
-                                                            background: theme.colors.primary.lighter
-                                                        },
-                                                        color: theme.palette.primary.main
-                                                    }}
-                                                    color='inherit'
+                                                    onClick={() => handleEditEmployee(employee.id)}
+                                                    color='primary'
                                                     size='small'
                                                 >
                                                     <EditTwoToneIcon />
@@ -95,17 +95,11 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
                                             </Tooltip>
                                         }
 
-                                        {handlePermissionExists('delete_group') &&
-                                            <Tooltip title="Excluir cargo" arrow>
+                                        {handlePermissionExists('delete_employee') &&
+                                            <Tooltip title="Excluir funcionário" arrow>
                                                 <IconButton
-                                                    onClick={() => handleDeleteGroup(group.id)}
-                                                    sx={{
-                                                        '&:hover': {
-                                                            background: theme.colors.primary.lighter
-                                                        },
-                                                        color: theme.palette.error.main
-                                                    }}
-                                                    color='inherit'
+                                                    onClick={() => handleDeleteEmployee(employee.id)}
+                                                    color='error'
                                                     size='small'                                                
                                                 >
                                                     <DeleteTwoToneIcon />
@@ -126,4 +120,4 @@ const GroupsTable = ( {groupsList, refreshList}: Props ) => {
     )
 }
 
-export default GroupsTable
+export default EmployeesTable

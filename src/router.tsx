@@ -6,6 +6,8 @@ import SidebarLayout from 'src/layouts/SidebarLayout';
 import BaseLayout from 'src/layouts/BaseLayout';
 
 import SuspenseLoader from 'src/components/SuspenseLoader';
+import AddEmployee from 'src/content/pages/Employees/Add';
+import EditEmployee from 'src/content/pages/Employees/Edit';
 
 const Loader = (Component) => (props) =>
   (
@@ -21,6 +23,11 @@ const SignIn = Loader(lazy(() => import ('src/content/pages/Auth/Signin')));
 const Groups = Loader(lazy(() => import('src/content/pages/Groups/Groups')));
 const AddGroup = Loader(lazy(() => import('src/content/pages/Groups/Add')));
 const EditGroup = Loader(lazy(() => import('src/content/pages/Groups/Edit')));
+
+// Employees
+const Employees = Loader(lazy(() => import('src/content/pages/Employees/Employees')));;
+const AddEmployees = Loader(lazy(() => import('src/content/pages/Employees/Add')));;
+const EditEmployees = Loader(lazy(() => import('src/content/pages/Employees/Edit')));;
 
 // Pages
 
@@ -113,6 +120,27 @@ const routes: RouteObject[] = [
             },
           ]
       },
+
+      // Employees
+      {
+        path: '',
+        element: <SidebarLayout />,
+        children: [
+            {
+              path: 'employees',
+              element: <Employees />,
+            },
+            {
+              path: 'employess-add',
+              element: <AddEmployee/>,
+            },
+            {
+              path: 'employees/edit/:id',
+              element: <EditEmployee />,
+            },
+          ]
+      },
+
       {
         path: '/',
         element: <Overview />
