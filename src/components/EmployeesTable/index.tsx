@@ -69,7 +69,7 @@ const EmployeesTable = ( {employeesList, refreshList}: Props ) => {
                                             fontWeight="bold"
                                             gutterBottom
                                         >
-                                            #{employee.name}
+                                            {employee.name}
                                         </Typography>
                                     </TableCell>
 
@@ -78,7 +78,7 @@ const EmployeesTable = ( {employeesList, refreshList}: Props ) => {
                                             fontWeight="bold"
                                             gutterBottom
                                         >
-                                            #{employee.email}
+                                            {employee.email}
                                         </Typography>
                                     </TableCell>
 

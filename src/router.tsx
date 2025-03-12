@@ -6,8 +6,6 @@ import SidebarLayout from 'src/layouts/SidebarLayout';
 import BaseLayout from 'src/layouts/BaseLayout';
 
 import SuspenseLoader from 'src/components/SuspenseLoader';
-import AddEmployee from 'src/content/pages/Employees/Add';
-import EditEmployee from 'src/content/pages/Employees/Edit';
 
 const Loader = (Component) => (props) =>
   (
@@ -26,8 +24,8 @@ const EditGroup = Loader(lazy(() => import('src/content/pages/Groups/Edit')));
 
 // Employees
 const Employees = Loader(lazy(() => import('src/content/pages/Employees/Employees')));;
-const AddEmployees = Loader(lazy(() => import('src/content/pages/Employees/Add')));;
-const EditEmployees = Loader(lazy(() => import('src/content/pages/Employees/Edit')));;
+const AddEmployee = Loader(lazy(() => import('src/content/pages/Employees/Add')));;
+const EditEmployee = Loader(lazy(() => import('src/content/pages/Employees/Edit')));;
 
 // Pages
 
@@ -131,8 +129,8 @@ const routes: RouteObject[] = [
               element: <Employees />,
             },
             {
-              path: 'employess-add',
-              element: <AddEmployee/>,
+              path: 'employees-add',
+              element: <AddEmployee />,
             },
             {
               path: 'employees/edit/:id',
