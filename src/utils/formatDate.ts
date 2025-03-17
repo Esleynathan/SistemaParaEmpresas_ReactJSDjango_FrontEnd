@@ -21,7 +21,7 @@ export const useDate = () => {
 
 
     return{
+        formatDateForAPI,
+        formatAPIdate,
     }
 }
-
-export default useDate;
