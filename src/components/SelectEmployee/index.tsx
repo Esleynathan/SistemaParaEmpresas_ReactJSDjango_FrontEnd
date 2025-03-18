@@ -17,7 +17,9 @@ const SelectEmployee = ({selectedEmployee, setSelectedEmployee}: Props) => {
     const handleGetEmployees = async () => {
         const response = await getEmployees();
 
-        if (!response.data) setEmployeesData(response.data.employees)
+        if (response.data && response.data.employees) {
+            setEmployeesData(response.data.employees);
+        }
     }
 
     useEffect(() => {
@@ -33,9 +35,9 @@ const SelectEmployee = ({selectedEmployee, setSelectedEmployee}: Props) => {
                 onChange={(e) => setSelectedEmployee(Number(+e.target.value))}
                 >
 
-                    {employeesData.map((item) => (
-                        <MenuItem key={item.id} value={item.id}>{item.name} - {item.email} </MenuItem>
-                    ))}
+                {employeesData.map((item) => (
+                    <MenuItem key={item.id} value={item.id}>{item.name} - {item.email} </MenuItem>
+                ))}
             </Select>
         </FormControl>
     )

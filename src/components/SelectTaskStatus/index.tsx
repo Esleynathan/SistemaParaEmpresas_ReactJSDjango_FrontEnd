@@ -2,17 +2,17 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState, useEffect } from "react";
 
 type Props = {
-    selectedTaskStatus: number;
-    setSelectedTaskStatus: (status_id: number) => void;
+    selectedStatus: number;
+    setSelectedStatus: (status_id: number) => void;
 }
-const SelectTaskStatus = ({ selectedTaskStatus, setSelectedTaskStatus }: Props) => {
+const SelectTaskStatus = ({ selectedStatus, setSelectedStatus }: Props) => {
     return (
         <FormControl fullWidth>
             <InputLabel> Selecione um status</InputLabel>
             <Select
-                value={selectedTaskStatus}
+                value={selectedStatus}
                 label="Selecione um status"
-                onChange={(e) => setSelectedTaskStatus(Number(+e.target.value))}
+                onChange={(e) => setSelectedStatus(Number(+e.target.value))}
             >
                 <MenuItem value={1}>Pendente</MenuItem>
                 <MenuItem value={2}>Em andamento</MenuItem>
