@@ -38,11 +38,9 @@ export const useAuth = () => {
     }
 
     const handleSignIn = async (email: string, password: string) => {
-        console.log('2º Etapa -> utils/auth.ts -> Chamando signIn com (auth.ts)::', email, password);
 
         const response = await signIn({ email, password });
     
-        console.log('Resposta de signIn (auth.ts):', response);
 
         if (!response.detail) {
             dispatch(setUser(response.data.user));

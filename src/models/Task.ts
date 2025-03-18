@@ -10,7 +10,7 @@ export type Task = {
 }
 
 export type TaskDetail = Task & {
-    employees: Employee;
+    employee: Employee;
 }
 
 export type ApiGetTasks = {

@@ -17,11 +17,14 @@ const Tasks = () => {
     const handleGetTasks = async () => {
         const response = await getTasks();
     
-    
-        if (!response.data) {
+        if (response.data && response.data.tasks) {
             setTasksData(response.data.tasks);
-            setRequestLoading(false);
+        } else {
+            console.error("No tasks data found in response:", response);
+            setTasksData([]);
         }
+
+        setRequestLoading(false);
     }
 
     useEffect(() => {
@@ -31,7 +34,7 @@ const Tasks = () => {
     return (
         <PermissionMiddleware codeName="view_task">
             <Helmet>
-                <title>Tasks</title>
+                <title>Tarefas</title>
             </Helmet>
 
             <PageTitleWrapper>

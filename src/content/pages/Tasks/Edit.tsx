@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Container, Stack, TextField, Button, LinearProgress, Snackbar } from "@mui/material";
 import PageTitle from "src/components/PageTitle";
@@ -9,9 +9,10 @@ import { useDate } from "src/utils/formatDate";
 import { useRequests } from "src/utils/requests";
 import SelectEmployee from "src/components/SelectEmployee";
 import SelectTaskStatus from "src/components/SelectTaskStatus";
+import { set } from "date-fns";
 
-const AddTask = () => {
-    const [requestLoading, setRequestLoading] = useState(false);
+const EditTask = () => {
+    const [requestLoading, setRequestLoading] = useState(true);
     const [infoMessage, setInfoMessage] = useState('');
     const [titleInput, setTitleInput] = useState('');
     const [descriptionInput, setDescriptionInput] = useState('');
@@ -20,13 +21,31 @@ const AddTask = () => {
     const [selectedEmployee, setSelectedEmployee] = useState<number | ''>('');
 
 
+    const {id: task_id } = useParams();
     const navigate = useNavigate();
+    
     const { formatDateForAPI } = useDate();
-    const { addTask } = useRequests();
+    const { editTask, getAnTask } = useRequests();
 
-    const handleAdd = async () => {
-        const [title, description, employee_id, status_id] = [titleInput, descriptionInput, selectedEmployee, selectedStatus];
+    const handleGetTask = async () => {
+        const response = await getAnTask(+task_id);
+        const task = response.data.task;
+
+        console.log("Employee data:", task.employee);
+
+        if (!response.detail){
+            setTitleInput(task.title);
+            setDescriptionInput(task.description);
+            setDateTimeInput(task.due_date ? task.due_date.slice(0, -4) : null);
+            setSelectedEmployee(task.employee.id);
+            setSelectedStatus(task.status == 'Pendente' ? 1 : task.status == 'Em Andamento' ? 2 : 3);
+        }
+    }
+
+    const handleEdit = async () => {
+        const [title, employee_id, status_id] = [titleInput, selectedEmployee, selectedStatus];
         const due_date = dateTimeInput ? formatDateForAPI(dateTimeInput) : null;
+        const description = descriptionInput ? descriptionInput : null;
 
         if (!title || !employee_id) {
             setInfoMessage('O nome é obrigatório');
@@ -34,29 +53,33 @@ const AddTask = () => {
         }
 
         setRequestLoading(true);
-        const response = await addTask({ title, description, due_date, employee_id, status_id });
+        const response = await editTask(+task_id, { title, employee_id, status_id, description });
         setRequestLoading(false);
 
         if (response.detail) {
             setInfoMessage(response.detail);
             return;
-        } else {
-            navigate('/tasks');
         }
+
+        navigate('/tasks');
     }
 
+    useEffect(() => {
+        Promise.resolve(handleGetTask()).finally(() => setRequestLoading(false));
+    }, [])
+
     return (
-        <PermissionMiddleware codeName="add_task">
+        <PermissionMiddleware codeName="change_task">
             <Helmet>
-                <title>Adicionar uma tarefa</title>
+                <title>Editar uma tarefa</title>
             </Helmet>
 
             {requestLoading && <LinearProgress sx={{ height: 2 }} color="primary" />}
 
             <PageTitleWrapper>
                 <PageTitle
-                    heading="Adicionar uma Tarefa"
-                    subHeading="Adicione uma tarefa e defina o nome, permissões e etc"
+                    heading="Editar uma Tarefa"
+                    subHeading="Edite uma tarefa e configure o nome, descrição e etc"
                 />
             </PageTitleWrapper>
 
@@ -98,10 +121,10 @@ const AddTask = () => {
                     <Button
                         variant="outlined"
                         sx={{ width: 90, mt: 3.5 }}
-                        onClick={requestLoading ? () => null : handleAdd}
+                        onClick={requestLoading ? () => null : handleEdit}
                         disabled={requestLoading}
                     >
-                        Adicionar
+                        Editar
                     </Button>
                 </Stack>
             </Container>
@@ -109,4 +132,4 @@ const AddTask = () => {
     )
 }
 
-export default AddTask;
+export default EditTask;

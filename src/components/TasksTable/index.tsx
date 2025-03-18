@@ -90,7 +90,7 @@ const TasksTable = ( {tasksList, refreshList}: Props ) => {
                                             fontWeight="bold"
                                             gutterBottom
                                         >
-                                            {task.due_date ? task.due_date : 'Não definido'}
+                                            {task.due_date ? formatAPIdate(task.due_date) : 'Não definido'}
                                         </Typography>
                                     </TableCell>
 

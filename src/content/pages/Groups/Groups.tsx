@@ -17,8 +17,6 @@ const Groups = () => {
     const handleGetGroups = async () => {
         setRequestLoading(true);
         const response = await getGroups();
-        
-        console.log('Dados recebidos:', response.data); 
 
         setGroupsData(response.data.groups);
         setRequestLoading(false)
