@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-primary {
+        @apply bg-indigo-500 text-white font-semibold py-1 px-6 rounded-md duration-500 hover:bg-indigo-700
+    }
+
+    .btn-danger {
+        @apply btn-primary bg-red-500 hover:bg-red-700
+    }
+
+    .btn-success {
+        @apply btn-primary bg-emerald-500 hover:bg-emerald-700
+    }
+}
